@@ -12,6 +12,7 @@ router.get('/vgtserver/member', function (req, res, next) {
 
   )
 });
+
 // http://localhost:8000/Vgt/vgtserver/member/4
 router.get('/vgtserver/member/:vgtid', function (req, res, next) {
   req.mysql.query("select * from member where vgtid = ?",
