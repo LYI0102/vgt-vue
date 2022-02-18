@@ -156,7 +156,7 @@ export default {
           return val.truename.includes(searchID.value);
         });
       } else {
-        return memberList.value
+        return memberList.value;
       }
     });
 
@@ -212,9 +212,19 @@ main.el-main {
 .el-input {
   width: $width;
 }
-// .el-table {
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-// }
+.el-button{
+  color: #fff;
+  background-color: rgb(38, 86, 99);
+  border-color: rgb(38, 86, 99);
+  &:hover {
+    color: #fff;
+    background-color: rgb(25, 161, 135);
+    border-color: rgb(25, 161, 135);
+  }
+  &:focus {
+    color: #fff;
+    background-color: rgb(38, 86, 99);
+    border-color: rgb(38, 86, 99);
+  }
+}
 </style>
