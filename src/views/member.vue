@@ -9,7 +9,7 @@
   
 el-container
   el-main
-      el-table(:data ="serchButton" border fit  :header-cell-style="{textAlign: 'center',backgroundColor:'rgb(38, 86, 99)',color:'white'}" :cell-style="{textAlign: 'center'}" )
+      el-table(:data ="serching" border fit  :header-cell-style="{textAlign: 'center',backgroundColor:'rgb(38, 86, 99)',color:'white'}" :cell-style="{textAlign: 'center'}" )
         el-table-column(label='會員ID' prop='vgtid' width="100px" )
         el-table-column(label='暱稱' prop='vgtname')
         el-table-column(label='帳號' prop='account')
@@ -25,7 +25,14 @@ el-container
           template(#default="scope")
             el-button(size='small' @click='handleEdit(scope.row)') 修改
             el-button(size='small' @click='delButton(scope.row)') 刪除
-
+el-pagination( 
+  v-model:currentPage="currentPage"
+  v-model:page-size="pageSize" 
+  background 
+  layout="total, sizes, prev, pager, next, jumper" 
+  :total="total"
+  @current-change="handleCurrentChange"
+  )
 el-dialog(
     v-model="dialogVisible"
     :title="currentItem.vgtid=== undefined ? '新增':'修改' "
@@ -74,6 +81,10 @@ export default {
   setup() {
     const dialogVisible = ref(false);
     const searchID = ref(undefined);
+    const total = ref(undefined);
+    const pageSize = ref(15);
+    const currentPage = ref(1);
+    const filter = ref([]);
     const formData = () => ({
       vgtid: undefined,
       vgtname: "",
@@ -150,15 +161,39 @@ export default {
           console.log(res);
         });
     };
-    const serchButton = computed(() => {
+    const serching = computed(() => {
       if (searchID.value) {
         return memberList.value.filter((val) => {
-          return val.truename.includes(searchID.value);
+          return val.truename
+            .toLowerCase()
+            .includes(searchID.value.toLowerCase());
         });
       } else {
         return memberList.value;
       }
+
+      // if (!searchID.value) {
+      //   total.value = memberList.value.length;
+      //   return memberList.value;
+      // }
+      // currentPage.value = 1;
+      // return memberList.value.filter((val) => {
+      //   return val.truename
+      //     .toLowerCase()
+      //     .includes(searchID.value.toLowerCase());
+      // });
     });
+    // const displayData = computed(() => {
+    //   total.value = serchButton.length;
+    //   return serchButton.slice(
+    //     pageSize.value * currentPage.value - pageSize.value,
+    //     pageSize.value * currentPage.value
+    //   );
+    // });
+
+    const handleCurrentChange = (val) => {
+      currentPage.value = val;
+    };
 
     onMounted(() => {
       fetchPosts();
@@ -166,6 +201,10 @@ export default {
     return {
       currentItem,
       memberList,
+      total,
+      pageSize,
+      currentPage,
+      filter,
       dialogVisible,
       transFormsData,
       handleOpen,
@@ -174,7 +213,9 @@ export default {
       searchID,
       okButton,
       delButton,
-      serchButton,
+      serching,
+      handleCurrentChange,
+      
     };
   },
 };
@@ -182,7 +223,8 @@ export default {
 
 <style lang="scss" scoped>
 $width: 80%;
-
+$background-color: rgb(38, 86, 99);
+$background-color-hover: rgb(25, 161, 135);
 .title {
   display: flex;
   justify-content: center;
@@ -212,19 +254,19 @@ main.el-main {
 .el-input {
   width: $width;
 }
-.el-button{
+.el-button {
   color: #fff;
-  background-color: rgb(38, 86, 99);
-  border-color: rgb(38, 86, 99);
+  background-color: $background-color;
+  border-color: $background-color;
   &:hover {
     color: #fff;
-    background-color: rgb(25, 161, 135);
-    border-color: rgb(25, 161, 135);
+    background-color: $background-color-hover;
+    border-color: $background-color-hover;
   }
   &:focus {
     color: #fff;
-    background-color: rgb(38, 86, 99);
-    border-color: rgb(38, 86, 99);
+    background-color: $background-color;
+    border-color: $background-color;
   }
 }
 </style>

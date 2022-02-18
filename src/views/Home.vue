@@ -9,13 +9,13 @@
 <script>
 // @ is an alias to /src
 import HelloWorld from "@/components/HelloWorld.vue";
-import router from'../components/router.vue'
+import Router from '../views/router.vue'
 
 export default {
   name: "Home",
   components: {
     HelloWorld,
-    router,
+    Router
   },
 };
 </script>
