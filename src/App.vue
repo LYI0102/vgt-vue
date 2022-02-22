@@ -1,12 +1,36 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/vgt/member">member</router-link>
-    
-
+  <div id="app">
+    <el-container>
+      <el-header class="header">
+        <router-link to="/">Home</router-link> |
+        <router-link to="/vgt/member">member</router-link>
+      </el-header>
+      <el-container class="content">
+        <el-aside class="aside">
+          <Home> </Home>
+        </el-aside>
+        <el-main class="main">
+          <router-view />
+        </el-main>
+      </el-container>
+      <el-footer>
+        <div className="text-center p-3">
+          © 2021 Copyright:
+          <a className="text-white" href="#">Virtual Goods Trade.com</a>
+        </div>
+      </el-footer>
+    </el-container>
   </div>
-  <router-view />
 </template>
+<script>
+import Home from "./views/backend/Home.vue";
+export default {
+  components: {
+    Home,
+  },
+  setup() {},
+};
+</script>
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -28,5 +52,4 @@
     }
   }
 }
-
 </style>

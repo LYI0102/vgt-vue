@@ -3,13 +3,12 @@
  
   div
     h1 會員資料
-      el-button(@click = 'handleOpen()') +
+    el-button(@click = 'handleOpen()') +
     el-input(style='width:20%' v-model='searchID' placeholder="搜尋姓名") 
      
   
-el-container
-  el-main
-      el-table(:data ="serching" border fit  :header-cell-style="{textAlign: 'center',backgroundColor:'rgb(38, 86, 99)',color:'white'}" :cell-style="{textAlign: 'center'}" )
+
+el-table(:data ="serching" border fit  :header-cell-style="{textAlign: 'center',backgroundColor:'rgb(38, 86, 99)',color:'white'}" :cell-style="{textAlign: 'center'}" )
         el-table-column(label='會員ID' prop='vgtid' width="100px" )
         el-table-column(label='暱稱' prop='vgtname')
         el-table-column(label='帳號' prop='account')
@@ -226,10 +225,8 @@ $width: 80%;
 $background-color: rgb(38, 86, 99);
 $background-color-hover: rgb(25, 161, 135);
 .title {
-  display: flex;
-  justify-content: center;
+ 
   div {
-    width: 78%;
     display: flex;
     justify-content: start;
     align-items: center;
@@ -237,9 +234,12 @@ $background-color-hover: rgb(25, 161, 135);
       display: flex;
       align-items: center;
       padding-right: 20px;
+      font-size: 30px;
     }
+
     .el-input {
-      padding-right: 20px;
+      padding-left: 20px;
+      width:$width ;
     }
   }
 }
@@ -247,9 +247,6 @@ $background-color-hover: rgb(25, 161, 135);
 main.el-main {
   display: flex;
   justify-content: center;
-  .el-table {
-    width: $width;
-  }
 }
 .el-input {
   width: $width;

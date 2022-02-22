@@ -18,7 +18,7 @@
               <span>Navigator One</span>
             </template>
             <el-menu-item-group title="Group One">
-              <el-menu-item index="1-1">item one</el-menu-item>
+              <el-menu-item index="/vgt/Member">item one</el-menu-item>
               <el-menu-item index="1-2">item one</el-menu-item>
             </el-menu-item-group>
             <el-menu-item-group title="Group Two">
@@ -31,6 +31,7 @@
           </el-sub-menu>
           <el-menu-item index="2">
             <el-icon><icon-menu /></el-icon>
+
             <span>Navigator Two</span>
           </el-menu-item>
           <el-menu-item index="3" disabled>
@@ -51,7 +52,7 @@
 <script>
 // @ is an alias to /src
 export default {
-  name: "Home",
+  name: "vgtrMenu",
   components: {},
 };
 </script>
