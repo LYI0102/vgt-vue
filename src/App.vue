@@ -7,7 +7,7 @@
       </el-header>
       <el-container class="content">
         <el-aside class="aside">
-          <Home> </Home>
+          <AsideMenu> </AsideMenu>
         </el-aside>
         <el-main class="main">
           <router-view />
@@ -23,15 +23,20 @@
   </div>
 </template>
 <script>
-import Home from "./views/backend/Home.vue";
+import AsideMenu from "./views/AsideMenu.vue";
 export default {
   components: {
-    Home,
+    AsideMenu,
   },
   setup() {},
 };
 </script>
-<style lang="scss">
+
+<style lang="scss" scoped>
+// .el-aside {
+//   margin-top: 56px;
+// }
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

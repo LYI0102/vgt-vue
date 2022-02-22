@@ -8,7 +8,7 @@
      
   
 
-el-table(:data ="serching" border fit  :header-cell-style="{textAlign: 'center',backgroundColor:'rgb(38, 86, 99)',color:'white'}" :cell-style="{textAlign: 'center'}" )
+el-table(:data ="serching" border fit max-height='800px'  :header-cell-style="{textAlign: 'center',backgroundColor:'rgb(38, 86, 99)',color:'white'}" :cell-style="{textAlign: 'center'}" )
         el-table-column(label='會員ID' prop='vgtid' width="100px" )
         el-table-column(label='暱稱' prop='vgtname')
         el-table-column(label='帳號' prop='account')

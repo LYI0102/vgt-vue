@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Home from "../views/backend/Home.vue";
 import Member from "../views/backend/Member.vue";
 import Appeal from "../views/backend/Appeal.vue";
 import AppealRply from "../views/backend/AppealRply.vue";
@@ -11,14 +10,10 @@ import Product from "../views/backend/Product.vue";
 import ProductCmmt from "../views/backend/ProductCmmt.vue";
 import Record from "../views/backend/Record.vue";
 const routes = [
-  {
-    path: "/",
-    name: "Home",
-    component: Home,
-  },
+
   {
     path: "/vgt/Member",
-    name: "Member",
+    name: "member",
     component: Member,
     meta: {
       title: '會員資料'
@@ -38,7 +33,7 @@ const routes = [
     },
     children: [
       {
-        path: "/AppealRply",
+        path: "/vgt/AppealRply",
         name: "appealRply",
         component: AppealRply,
         meta: {
@@ -66,7 +61,7 @@ const routes = [
     },
     children: [
       {
-        path: "/OrderCmmt",
+        path: "/vgt/OrderCmmt",
         name: "orderCmmt",
         component: OrderCmmt,
         meta: {
@@ -85,7 +80,7 @@ const routes = [
     },
     children: [
       {
-        path: "/Discount",
+        path: "/vgt/Discount",
         name: "discount",
         component: Discount,
         meta: {
@@ -93,7 +88,7 @@ const routes = [
         }
       },
       {
-        path: "/ProductCmmt",
+        path: "/vgt/ProductCmmt",
         name: "productCmmt",
         component: ProductCmmt,
         meta: {
