@@ -77,7 +77,7 @@ import axios from "axios";
 import _ from "lodash";
 import { computed, onMounted, reactive, ref } from "vue";
 export default {
-  name: "member",
+  name: "Member",
   setup() {
     const dialogVisible = ref(false);
     const searchID = ref(undefined);

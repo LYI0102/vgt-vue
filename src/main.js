@@ -7,4 +7,10 @@ import VueAxios from "vue-axios";
 import lodash from "lodash";
 import ElementPlus from "element-plus";
 import "element-plus/dist/index.css";
-createApp(App).use(store).use(router).use(VueAxios, axios).use(lodash).use(ElementPlus).mount("#app");
+import * as ElIcons from'@element-plus/icons-vue';
+
+const app = createApp(App)
+app.use(store).use(router).use(VueAxios, axios).use(lodash).use(ElementPlus).mount("#app");
+Object.keys(ElIcons).forEach(key=>{
+app.component(key,ElIcons[key])
+})
