@@ -218,45 +218,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$width: 80%;
-$background-color: rgb(38, 86, 99);
-$background-color-hover: rgb(25, 161, 135);
-.title {
-  > div {
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    h1 {
-      padding-right: 20px;
-      font-size: 2rem;
-    }
-    .el-input {
-      padding-left: 20px;
-      width: $width;
-    }
-  }
-}
+@import "view";
 
-main.el-main {
-  display: flex;
-  justify-content: center;
-}
-.el-input {
-  width: $width;
-}
-.el-button {
-  color: #fff;
-  background-color: $background-color;
-  border-color: $background-color;
-  &:hover {
-    color: #fff;
-    background-color: $background-color-hover;
-    border-color: $background-color-hover;
-  }
-  &:focus {
-    color: #fff;
-    background-color: $background-color;
-    border-color: $background-color;
-  }
-}
 </style>
