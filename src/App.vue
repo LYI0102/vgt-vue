@@ -1,42 +1,60 @@
 <template>
   <div id="app">
-    <el-container>
-      <el-header class="header">
-        <router-link to="/">Home</router-link> |
-        <router-link to="/vgt/member">member</router-link>
-      </el-header>
+    <header>
+      <Navigation> </Navigation>
+    </header>
+    <div class="asideMain">
+      <aside class="aside">
+        <AsideMenu> </AsideMenu>
+      </aside>
+      <main class="main">
+        <router-view />
+      </main>
+    </div>
+    <!-- <el-container>
       <el-container class="content">
-        <el-aside class="aside">
-          <AsideMenu> </AsideMenu>
-        </el-aside>
-        <el-main class="main">
-          <router-view />
-        </el-main>
+        <el-aside class="aside"> </el-aside>
+        <el-main class="main"> </el-main>
       </el-container>
-      <el-footer>
-        <div className="text-center p-3">
-          © 2021 Copyright:
-          <a className="text-white" href="#">Virtual Goods Trade.com</a>
-        </div>
-      </el-footer>
-    </el-container>
+    </el-container> -->
+    <!-- <footer>
+      <Footer> </Footer>
+    </footer> -->
   </div>
 </template>
 <script>
 import AsideMenu from "./views/AsideMenu.vue";
+import Navigation from "../src/components/Navigation.vue";
+// import Footer from "../src/components/Footer.vue";
 export default {
   components: {
     AsideMenu,
+    Navigation,
+    // Footer,
   },
   setup() {},
 };
 </script>
 
 <style lang="scss" scoped>
-// .el-aside {
-//   margin-top: 56px;
+// *{
+//   margin: 0;
+//   padding: 0;
+//   box-sizing: border-box;
 // }
 
+.asideMain {
+  display: flex;
+  .aside {
+    width: 250px;
+    height: 100vh;
+    margin-top: 16px;
+  }
+  .main {
+    width: 80%;
+    padding-left: 40px;
+  }
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

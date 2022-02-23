@@ -1,10 +1,10 @@
 <template>
-  <div class="home">
+  <div class="aside">
     <el-row class="tac">
       <el-col>
         <el-menu
           active-text-color="#ffd04b"
-          background-color="rgb(38, 86, 99)"
+          background-color="linear-gradient(55deg, rgb(2, 147, 82), rgb(54, 134, 150))"
           class="el-menu-vertical-demo"
           :default-active="$route.path"
           text-color="#fff"
@@ -92,5 +92,10 @@ export default {
 <style lang="scss" scoped>
 .el-menu {
   height: 100vh;
+  width: 100%;
+  background: linear-gradient(55deg, rgb(2, 147, 82), rgb(54, 134, 150));
+  .el-sub-menu__title:hover {
+    background-color: rgb(0, 86, 127);
+  }
 }
 </style>
