@@ -37,14 +37,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-// *{
-//   margin: 0;
-//   padding: 0;
-//   box-sizing: border-box;
-// }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background: white;
+}
 
 .asideMain {
   display: flex;
+  width: 100%;
+  height: 100%;
   .aside {
     width: 250px;
     height: 100vh;
@@ -52,6 +55,7 @@ export default {
   }
   .main {
     width: 80%;
+    height: 100vh;
     padding-left: 40px;
   }
 }
@@ -74,5 +78,15 @@ export default {
       color: #42b983;
     }
   }
+}
+</style>
+<style lang="scss">
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  background: white;
 }
 </style>

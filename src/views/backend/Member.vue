@@ -6,7 +6,7 @@
     el-button(@click = 'handleOpen()') +
     el-input(style='width:20%' v-model='searchID' placeholder="搜尋姓名") 
 
-el-table(:data ="serching" border fit max-height='850px'  :header-cell-style="{textAlign: 'center',backgroundColor:'rgb(38, 86, 99)',color:'white'}" :cell-style="{textAlign: 'center'}" )
+el-table(:data ="serching" border fit max-height='800px'  :header-cell-style="{textAlign: 'center',backgroundColor:'rgb(38, 86, 99)',color:'white'}" :cell-style="{textAlign: 'center'}" )
         el-table-column(label='會員ID' prop='vgtid' width="100px" )
         el-table-column(label='暱稱' prop='vgtname')
         el-table-column(label='帳號' prop='account')
@@ -160,11 +160,16 @@ export default {
     };
     const serching = computed(() => {
       if (searchID.value) {
-        return memberList.value.filter((val) => {
-          return val.truename
-            .toLowerCase()
-            .includes(searchID.value.toLowerCase());
-        });
+        // return memberList.value.filter((val) => {
+        //   return val.truename
+        //     .toLowerCase()
+        //     .includes(searchID.value.toLowerCase());
+        // });
+        return _.chain(memberList.value)
+          .filter((val) => {
+            return val.truename.includes(searchID.value);
+          })
+          .value();
       } else {
         return memberList.value;
       }
@@ -219,5 +224,4 @@ export default {
 
 <style lang="scss" scoped>
 @import "view";
-
 </style>
