@@ -31,16 +31,14 @@ const routes = [
     meta: {
       title: '申訴資料'
     },
-    children: [
-      {
-        path: "/vgt/AppealRply",
-        name: "appealRply",
-        component: AppealRply,
-        meta: {
-          title: '申訴回覆'
-        }
-      },
-    ]
+  },
+  {
+    path: "/vgt/AppealRply",
+    name: "appealRply",
+    component: AppealRply,
+    meta: {
+      title: '申訴回覆'
+    }
   },
 
 
@@ -59,16 +57,15 @@ const routes = [
     meta: {
       title: '訂單資料'
     },
-    children: [
-      {
-        path: "/vgt/OrderCmmt",
-        name: "orderCmmt",
-        component: OrderCmmt,
-        meta: {
-          title: '訂單留言'
-        }
-      },
-    ]
+
+  },
+  {
+    path: "/vgt/OrderCmmt",
+    name: "orderCmmt",
+    component: OrderCmmt,
+    meta: {
+      title: '訂單留言'
+    }
   },
 
   {
@@ -78,24 +75,23 @@ const routes = [
     meta: {
       title: '商品資料'
     },
-    children: [
-      {
-        path: "/vgt/Discount",
-        name: "discount",
-        component: Discount,
-        meta: {
-          title: '商品折扣'
-        }
-      },
-      {
-        path: "/vgt/ProductCmmt",
-        name: "productCmmt",
-        component: ProductCmmt,
-        meta: {
-          title: '商品留言'
-        }
-      },
-    ]
+
+  },
+  {
+    path: "/vgt/Discount",
+    name: "discount",
+    component: Discount,
+    meta: {
+      title: '商品折扣'
+    }
+  },
+  {
+    path: "/vgt/ProductCmmt",
+    name: "productCmmt",
+    component: ProductCmmt,
+    meta: {
+      title: '商品留言'
+    }
   },
 
   {

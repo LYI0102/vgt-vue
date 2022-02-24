@@ -135,9 +135,14 @@ export default {
     };
     const serching = computed(() => {
       if (searchID.value) {
+        // return memberList.value.filter((val) => {
+        //   return val.truename
+        //     .toLowerCase()
+        //     .includes(searchID.value.toLowerCase());
+        // });
         return _.chain(orderList.value)
           .filter((val) => {
-            return val.orderid.includes(searchID.value);
+            return val.orderid == searchID.value;
           })
           .value();
       } else {
