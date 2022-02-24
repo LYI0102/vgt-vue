@@ -74,6 +74,9 @@ export default {
         .get("http://localhost:3000/Vgt/vgtserver/order")
         .then((res) => {
           orderList.value = _.chain(res.data).cloneDeep().value();
+          orderList.value.map((val) => {
+            val.orderdate = new Date(val.orderdate).toLocaleDateString();
+          });
         });
     };
     const formData = () => ({
