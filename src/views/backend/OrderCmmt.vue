@@ -1,9 +1,9 @@
 <template lang="pug">
 .title
   div
-    h1 訂單資料
-    el-button(@click = 'handleOpen()') +
-    el-input(style='width:20%' v-model='searchID' placeholder="搜尋訂單") 
+    h1 訂單留言
+    //- el-button(@click = 'handleOpen()') +
+    //- el-input(style='width:20%' v-model='searchID' placeholder="搜尋訂單") 
 
 el-table(:data ="orderCmmtList" border fit max-height='850px'  :header-cell-style="{textAlign: 'center',backgroundColor:'rgb(38, 86, 99)',color:'white'}" :cell-style="{textAlign: 'center'}" )
         el-table-column(label='訂單編號' prop='orderid' width="100px" )

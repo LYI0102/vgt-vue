@@ -51,7 +51,7 @@ export default {
   .aside {
     width: 250px;
     height: 100vh;
-    margin-top: 16px;
+    // margin-top: 16px;
   }
   .main {
     width: 80%;

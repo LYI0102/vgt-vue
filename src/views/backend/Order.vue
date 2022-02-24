@@ -1,6 +1,5 @@
 <template lang="pug">
 .title
- 
   div
     h1 訂單資料
     el-button(@click = 'handleOpen()') +
