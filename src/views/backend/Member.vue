@@ -157,6 +157,7 @@ export default {
         .then((res) => {
           console.log(res);
         });
+      fetchPosts();
     };
     const serching = computed(() => {
       if (searchID.value) {

@@ -94,6 +94,8 @@ export default {
   height: 100vh;
   width: 100%;
   background: linear-gradient(55deg, rgb(2, 147, 82), rgb(54, 134, 150));
+  font-weight: bold;
+  font-size: 30px;
   .el-sub-menu__title:hover {
     background-color: rgb(0, 86, 127);
   }

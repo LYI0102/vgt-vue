@@ -72,7 +72,7 @@ header {
     align-items: center;
     justify-content: start;
     img {
-      width: 200px;
+      width: 180px;
     }
   }
   .navigation {
