@@ -2,8 +2,8 @@
 .title
   div
     h1 申訴回覆
-    el-button(@click = 'handleOpen()') +
-    el-input(style='width:20%' v-model='searchID' placeholder="搜尋訂單") 
+    //- el-button(@click = 'handleOpen()') +
+    //- el-input(style='width:20%' v-model='searchID' placeholder="搜尋訂單") 
 
 el-table(:data ="appealRplyList" border fit max-height='850px'  :header-cell-style="{textAlign: 'center',backgroundColor:'rgb(38, 86, 99)',color:'white'}" :cell-style="{textAlign: 'center'}" )
         el-table-column(label='申訴編號' prop='appealid' width="100px" )
@@ -62,12 +62,25 @@ export default {
           });
         });
     };
+    const delButton = (scope) => {
+      axios
+        .delete(
+          `http://localhost:3000/Vgt/vgtserver/appealrply/${scope.rplyid}`,
+          { scope },
+          { headers: { "Content-Type": "application/json" } }
+        )
+        .then((res) => {
+          console.log(res);
+        });
+      fetchPosts();
+    };
     onMounted(() => {
       fetchPosts();
     });
     return {
       appealRplyList,
       fetchPosts,
+      delButton,
     };
   },
 };
