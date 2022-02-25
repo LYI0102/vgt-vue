@@ -1,23 +1,22 @@
 <template lang="pug">
 .title
   div
-    h1 訂單資料
-    el-button(@click = 'handleOpen()') +
-    el-input(style='width:20%' v-model='searchID' placeholder="搜尋訂單") 
+    h1 申訴資料
+    //- el-button(@click = 'handleOpen()') +
+    el-input(style='width:20%' v-model='searchID' placeholder="搜尋未回覆") 
 
-el-table(:data ="serching" border fit max-height='850px'  :header-cell-style="{textAlign: 'center',backgroundColor:'rgb(38, 86, 99)',color:'white'}" :cell-style="{textAlign: 'center'}" )
-        el-table-column(label='訂單編號' prop='orderid' width="100px" )
-        el-table-column(label='買家ID' prop='buyerid')
-        el-table-column(label='商品編號' prop='productid')
-        el-table-column(label='訂單日期' prop='orderdate')
-        el-table-column(label='交易狀態' prop='orderstate')
-        el-table-column(label='角色名稱' prop='charactername')
-        el-table-column(label='角色特徵' prop='characterdesc'  width="200px")
-        el-table-column(label='評價' prop='ordereval')
-        el-table-column(label='評價留言' prop='orderevalcmmt' )
+el-table(:data ="searching" border fit max-height='850px'  :header-cell-style="{textAlign: 'center',backgroundColor:'rgb(38, 86, 99)',color:'white'}" :cell-style="{textAlign: 'center'}" )
+        el-table-column(label='申訴編號' prop='appealid' width="100px" )
+        el-table-column(label='申訴人ID' prop='appellantid')
+        el-table-column(label='訂單編號' prop='orderid')
+        el-table-column(label='申訴分類' prop='appealclass')
+        el-table-column(label='申訴內容' prop='appealdesc')
+        el-table-column(label='申訴時間' prop='appealdate')
+        el-table-column(label='申訴圖片' prop='appealimg'  width="200px")
+        el-table-column(label='申訴狀態' prop='appealstate')
         el-table-column(label='操作' width="150px")
           template(#default="scope")
-            el-button(size='small' @click='handleEdit(scope.row)') 修改
+            el-button(size='small' @click='handleEdit(scope.row)') 回覆
             el-button(size='small' @click='delButton(scope.row)') 刪除
 //- el-pagination( 
 //-   v-model:currentPage="currentPage"
@@ -38,32 +37,111 @@ el-dialog(
   label-width="80px"
   label-position='right'
   )
-    el-form-item(label="買家ID")
-      el-input(v-model="currentItem.buyerid")   
-    el-form-item(label="商品編號")
-      el-input(v-model="currentItem.productid") 
-    el-form-item(label="交易狀態" )
-      el-input(v-model="currentItem.orderstate" )
-    el-form-item(label="角色名稱")
-      el-input(v-model="currentItem.charactername") 
-    el-form-item(label="角色特徵")
-      el-input(v-model="currentItem.characterdesc" ) 
-    el-form-item(label="評價")
-      el-input(v-model="currentItem.ordereval") 
-    el-form-item(label="評價留言")
-      el-input(v-model="currentItem.orderevalcmmt") 
+    el-form-item(label="申訴編號")
+      el-input(v-model="currentItem.appealid")   
+    el-form-item(label="管理人ID")
+      el-input(v-model="currentItem.managerid") 
+    el-form-item(label="回覆內容" )
+      el-input(v-model="currentItem.rplydesc" )
   template(#footer)
     span(class="dialog-footer")
         el-button(@click="okButton()") 儲存
         el-button(type="primary" @click="dialogVisible = false") 關閉    
 </template>
 <script>
+import { computed, onMounted, reactive, ref } from "vue";
+import axios from "axios";
+import _ from "lodash";
 export default {
-    name:'Appeal',
-    setup() {
-        
-    },
-}
+  name: "Appeal",
+  setup() {
+    const appealList = ref([]);
+    const dialogVisible = ref(false);
+    const searchID = ref(undefined);
+    const formData = () => ({
+      appealid: -1,
+      appellantid: "",
+      orderid: "",
+      appealclassname: "",
+      appealdesc: "",
+      appealdate: "",
+      appealimg: "",
+      rplyid: "",
+    });
+    const currentItem = reactive(formData());
+    const fetchPosts = async () => {
+      await axios
+        .get("http://localhost:3000/Vgt/vgtserver/appeal")
+        .then((res) => {
+          appealList.value = _.chain(res.data).cloneDeep().value();
+          appealList.value.map((val) => {
+            val.appealdate = new Date(val.appealdate).toLocaleDateString();
+          });
+        });
+    };
+    const handleEdit = (scope) => {
+      dialogVisible.value = !dialogVisible.value;
+      return _.assign(currentItem, scope);
+    };
+    const okButton = () => {
+      postData();
+      putData();
+      dialogVisible.value = false;
+    };
+    const postData = () => {
+      axios
+        .post(
+          "http://localhost:3000/Vgt/vgtserver/appealrply",
+          JSON.stringify(currentItem),
+          { headers: { "Content-Type": "application/json" } }
+        )
+
+        .then((response) => {
+          console.log(response);
+          console.log(currentItem);
+        });
+      fetchPosts();
+    };
+    const putData = () => {
+      axios
+        .put(
+          "http://localhost:3000/Vgt/vgtserver/appeal",
+          JSON.stringify(currentItem),
+          { headers: { "Content-Type": "application/json" } }
+        )
+
+        .then((response) => {
+          console.log(response);
+          console.log(currentItem);
+        });
+      fetchPosts();
+    };
+    const searching = computed(() => {
+      if (searchID.value) {
+        return _.chain(appealList.value)
+          .filter((val) => {
+            return val.appealstate.includes(searchID.value);
+          })
+          .value();
+      } else {
+        return appealList.value;
+      }
+    });
+    onMounted(() => {
+      fetchPosts();
+    });
+    return {
+      appealList,
+      dialogVisible,
+      fetchPosts,
+      handleEdit,
+      currentItem,
+      okButton,
+      searchID,
+      searching,
+    };
+  },
+};
 </script>
 <style lang="scss" scoped>
 @import "view";
