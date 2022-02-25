@@ -54,7 +54,7 @@ export default {
     const appealRplyList = ref([]);
     const fetchPosts = async () => {
       await axios
-        .get("http://localhost:3000/Vgt/vgtserver/appealrply")
+        .get("http://localhost:3030/Vgt/vgtserver/appealrply")
         .then((res) => {
           appealRplyList.value = _.chain(res.data).cloneDeep().value();
           appealRplyList.value.map((val) => {
@@ -65,7 +65,7 @@ export default {
     const delButton = (scope) => {
       axios
         .delete(
-          `http://localhost:3000/Vgt/vgtserver/appealrply/${scope.rplyid}`,
+          `http://localhost:3030/Vgt/vgtserver/appealrply/${scope.rplyid}`,
           { scope },
           { headers: { "Content-Type": "application/json" } }
         )

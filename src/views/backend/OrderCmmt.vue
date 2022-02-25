@@ -62,7 +62,7 @@ export default {
     const orderCmmtList = ref([]);
     const fetchPosts = async () => {
       await axios
-        .get("http://localhost:3000/Vgt/vgtserver/ordercmmt")
+        .get("http://localhost:3030/Vgt/vgtserver/ordercmmt")
         .then((res) => {
           orderCmmtList.value = _.chain(res.data).cloneDeep().value();
           orderCmmtList.value.map((val) => {
@@ -73,7 +73,7 @@ export default {
     const delButton = (scope) => {
       axios
         .delete(
-          `http://localhost:3000/Vgt/vgtserver/ordercmmt/${scope.orderidset}`,
+          `http://localhost:3030/Vgt/vgtserver/ordercmmt/${scope.orderidset}`,
           { scope },
           { headers: { "Content-Type": "application/json" } }
         )

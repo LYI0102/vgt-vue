@@ -70,7 +70,7 @@ export default {
     const currentItem = reactive(formData());
     const fetchPosts = async () => {
       await axios
-        .get("http://localhost:3000/Vgt/vgtserver/vgtdiscount")
+        .get("http://localhost:3030/Vgt/vgtserver/vgtdiscount")
         .then((res) => {
           discountList.value = _.chain(res.data).cloneDeep().value();
         });
@@ -88,7 +88,7 @@ export default {
       if (currentItem.discountidid === -1) {
         await axios
           .post(
-            "http://localhost:3000/Vgt/vgtserver/vgtdiscount",
+            "http://localhost:3030/Vgt/vgtserver/vgtdiscount",
             JSON.stringify(currentItem),
             { headers: { "Content-Type": "application/json" } }
           )
@@ -98,7 +98,7 @@ export default {
       } else {
         await axios
           .put(
-            "http://localhost:3000/Vgt/vgtserver/vgtdiscount",
+            "http://localhost:3030/Vgt/vgtserver/vgtdiscount",
             JSON.stringify(currentItem),
             { headers: { "Content-Type": "application/json" } }
           )
@@ -112,7 +112,7 @@ export default {
     const delButton = (scope) => {
       axios
         .delete(
-          `http://localhost:3000/Vgt/vgtserver/vgtdiscount/${scope.vgtid}`,
+          `http://localhost:3030/Vgt/vgtserver/vgtdiscount/${scope.vgtid}`,
           { scope },
           { headers: { "Content-Type": "application/json" } }
         )

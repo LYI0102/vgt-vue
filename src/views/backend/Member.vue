@@ -117,7 +117,7 @@ export default {
     };
     const fetchPosts = async () => {
       await axios
-        .get("http://localhost:3000/Vgt/vgtserver/member")
+        .get("http://localhost:3030/Vgt/vgtserver/member")
         .then((res) => {
           memberList.value = _.chain(res.data).cloneDeep().value();
         });
@@ -126,7 +126,7 @@ export default {
       if (currentItem.vgtid === undefined) {
         await axios
           .post(
-            "http://localhost:3000/Vgt/vgtserver/member",
+            "http://localhost:3030/Vgt/vgtserver/member",
             JSON.stringify(currentItem),
             { headers: { "Content-Type": "application/json" } }
           )
@@ -136,7 +136,7 @@ export default {
       } else {
         await axios
           .put(
-            "http://localhost:3000/Vgt/vgtserver/member",
+            "http://localhost:3030/Vgt/vgtserver/member",
             JSON.stringify(currentItem),
             { headers: { "Content-Type": "application/json" } }
           )
@@ -150,7 +150,7 @@ export default {
     const delButton = (scope) => {
       axios
         .delete(
-          `http://localhost:3000/Vgt/vgtserver/member/${scope.vgtid}`,
+          `http://localhost:3030/Vgt/vgtserver/member/${scope.vgtid}`,
           { scope },
           { headers: { "Content-Type": "application/json" } }
         )

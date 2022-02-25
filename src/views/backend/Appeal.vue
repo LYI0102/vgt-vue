@@ -71,7 +71,7 @@ export default {
     const currentItem = reactive(formData());
     const fetchPosts = async () => {
       await axios
-        .get("http://localhost:3000/Vgt/vgtserver/appeal")
+        .get("http://localhost:3030/Vgt/vgtserver/appeal")
         .then((res) => {
           appealList.value = _.chain(res.data).cloneDeep().value();
           appealList.value.map((val) => {
@@ -91,7 +91,7 @@ export default {
     const postData = () => {
       axios
         .post(
-          "http://localhost:3000/Vgt/vgtserver/appealrply",
+          "http://localhost:3030/Vgt/vgtserver/appealrply",
           JSON.stringify(currentItem),
           { headers: { "Content-Type": "application/json" } }
         )
@@ -105,7 +105,7 @@ export default {
     const putData = () => {
       axios
         .put(
-          "http://localhost:3000/Vgt/vgtserver/appeal",
+          "http://localhost:3030/Vgt/vgtserver/appeal",
           JSON.stringify(currentItem),
           { headers: { "Content-Type": "application/json" } }
         )

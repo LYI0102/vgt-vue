@@ -63,9 +63,12 @@ export default {
     const currentItem = reactive(formData());
     const fetchPosts = async () => {
       await axios
-        .get("http://localhost:3000/Vgt/vgtserver/vgtnews")
+        .get("http://localhost:3030/Vgt/vgtserver/vgtnews")
         .then((res) => {
           newsList.value = _.chain(res.data).cloneDeep().value();
+          newsList.value.map((val) => {
+            val.newsdate = new Date(val.newsdate).toLocaleDateString();
+          });
         });
     };
     const handleOpen = () => {
@@ -80,7 +83,7 @@ export default {
       if (currentItem.newsid === -1) {
         await axios
           .post(
-            "http://localhost:3000/Vgt/vgtserver/vgtnews",
+            "http://localhost:3030/Vgt/vgtserver/vgtnews",
             JSON.stringify(currentItem),
             { headers: { "Content-Type": "application/json" } }
           )
@@ -90,7 +93,7 @@ export default {
       } else {
         await axios
           .put(
-            "http://localhost:3000/Vgt/vgtserver/vgtnews",
+            "http://localhost:3030/Vgt/vgtserver/vgtnews",
             JSON.stringify(currentItem),
             { headers: { "Content-Type": "application/json" } }
           )
@@ -104,7 +107,7 @@ export default {
     const delButton = (scope) => {
       axios
         .delete(
-          `http://localhost:3000/Vgt/vgtserver/vgtnews/${scope.newsid}`,
+          `http://localhost:3030/Vgt/vgtserver/vgtnews/${scope.newsid}`,
           { scope },
           { headers: { "Content-Type": "application/json" } }
         )

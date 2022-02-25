@@ -78,7 +78,7 @@ export default {
     const searchID = ref(undefined);
     const fetchPosts = async () => {
       await axios
-        .get("http://localhost:3000/Vgt/vgtserver/product")
+        .get("http://localhost:3030/Vgt/vgtserver/product")
         .then((res) => {
           productList.value = _.chain(res.data).cloneDeep().value();
           productList.value.map((val) => {
@@ -113,7 +113,7 @@ export default {
       if (currentItem.productid === -1) {
         await axios
           .post(
-            "http://localhost:3000/Vgt/vgtserver/product",
+            "http://localhost:3030/Vgt/vgtserver/product",
             JSON.stringify(currentItem),
             { headers: { "Content-Type": "application/json" } }
           )
@@ -123,7 +123,7 @@ export default {
       } else {
         await axios
           .put(
-            "http://localhost:3000/Vgt/vgtserver/product",
+            "http://localhost:3030/Vgt/vgtserver/product",
             JSON.stringify(currentItem),
             { headers: { "Content-Type": "application/json" } }
           )
@@ -137,7 +137,7 @@ export default {
     const delButton = (scope) => {
       axios
         .delete(
-          `http://localhost:3000/Vgt/vgtserver/product/${scope.vgtid}`,
+          `http://localhost:3030/Vgt/vgtserver/product/${scope.vgtid}`,
           { scope },
           { headers: { "Content-Type": "application/json" } }
         )

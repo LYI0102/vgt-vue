@@ -57,7 +57,7 @@ export default {
     const productCmmtList = ref([]);
     const fetchPosts = async () => {
       await axios
-        .get("http://localhost:3000/Vgt/vgtserver/productcmmt")
+        .get("http://localhost:3030/Vgt/vgtserver/productcmmt")
         .then((res) => {
           productCmmtList.value = _.chain(res.data).cloneDeep().value();
           productCmmtList.value.map((val) => {
